@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(gh api *)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:www.npmjs.com)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('Description:', d.get\\('description',''\\)\\); print\\('Stars:', d.get\\('stargazers_count',''\\)\\); print\\('Created:', d.get\\('created_at',''\\)\\); print\\('Updated:', d.get\\('updated_at',''\\)\\); print\\('Language:', d.get\\('language',''\\)\\); print\\('License:', d.get\\('license',{} or {}\\).get\\('name',''\\) if d.get\\('license'\\) else 'None'\\)\")",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:imohanvadivel.github.io)",
+      "WebFetch(domain:engineering.atspotify.com)",
+      "WebFetch(domain:jackrighteous.com)",
+      "WebFetch(domain:magenta.github.io)",
+      "WebFetch(domain:sonoport.github.io)",
+      "WebFetch(domain:freesound.org)",
+      "WebFetch(domain:tonejs.github.io)"
+    ]
+  }
+}

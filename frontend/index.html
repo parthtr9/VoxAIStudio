@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VoxAI Studio — Your Music Projects</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .delete-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+    .project-card:hover .delete-btn { opacity: 1; }
+    .project-card { position: relative; }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🎙</div>
+        VoxAI Studio
+      </a>
+      <button class="btn btn-primary" id="new-project-btn">
+        + New Project
+      </button>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="dashboard-header">
+      <div>
+        <h1>Your Projects</h1>
+        <p style="color: var(--text-secondary); margin-top: 4px;">Every song in one place</p>
+      </div>
+    </div>
+
+    <div id="projects-loading" class="loading-state" style="margin-bottom: 32px;">
+      <div class="spinner"></div>
+      Loading projects…
+    </div>
+
+    <div id="projects-grid" class="projects-grid" style="display: none;"></div>
+
+    <!-- Trends section -->
+    <div class="trends-section">
+      <div class="section-header">
+        <div class="section-title">
+          📈 Trending This Week
+          <span class="section-badge">LIVE</span>
+        </div>
+      </div>
+      <div id="trends-grid" class="trends-grid">
+        <div class="loading-state"><div class="spinner"></div> Loading trends…</div>
+      </div>
+    </div>
+  </main>
+
+  <!-- New Project Modal -->
+  <div id="new-project-modal" class="modal-overlay" style="display: none;">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>New Project</h2>
+        <button class="btn btn-ghost btn-icon" id="close-modal">✕</button>
+      </div>
+
+      <form id="new-project-form">
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="form-group">
+            <label for="project-title">Song Title</label>
+            <input id="project-title" type="text" placeholder="Untitled Song" required />
+          </div>
+
+          <div class="modal-grid">
+            <div class="form-group">
+              <label for="project-genre">Genre</label>
+              <select id="project-genre" required>
+                <option value="">Select genre</option>
+                <option value="Pop">Pop</option>
+                <option value="R&B">R&B</option>
+                <option value="Hip-Hop">Hip-Hop</option>
+                <option value="Afrobeats">Afrobeats</option>
+                <option value="Drill">Drill</option>
+                <option value="Latin">Latin</option>
+                <option value="Country">Country</option>
+                <option value="Soul">Soul</option>
+                <option value="EDM">EDM</option>
+                <option value="Indie">Indie</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="project-mood">Mood</label>
+              <select id="project-mood" required>
+                <option value="">Select mood</option>
+                <option value="Sad">Sad</option>
+                <option value="Hype">Hype</option>
+                <option value="Romantic">Romantic</option>
+                <option value="Angry">Angry</option>
+                <option value="Chill">Chill</option>
+                <option value="Party">Party</option>
+                <option value="Spiritual">Spiritual</option>
+                <option value="Reflective">Reflective</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="project-bpm">BPM <span style="color: var(--text-dim);">(optional)</span></label>
+              <input id="project-bpm" type="number" min="40" max="240" placeholder="Auto" />
+            </div>
+
+            <div class="form-group">
+              <label for="project-key">Key <span style="color: var(--text-dim);">(optional)</span></label>
+              <select id="project-key">
+                <option value="">Auto</option>
+                <option>C</option><option>Cm</option>
+                <option>D</option><option>Dm</option>
+                <option>E</option><option>Em</option>
+                <option>F</option><option>Fm</option>
+                <option>G</option><option>Gm</option>
+                <option>A</option><option>Am</option>
+                <option>B</option><option>Bm</option>
+                <option>Bb</option><option>Bbm</option>
+                <option>F#</option><option>F#m</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="project-vocal">Vocal Style</label>
+            <select id="project-vocal">
+              <option value="melodic">Melodic / Sung</option>
+              <option value="raw">Raw / Spoken</option>
+              <option value="trap">Trap / Rap</option>
+              <option value="rnb">R&B Smooth</option>
+              <option value="belting">Belting / Power</option>
+            </select>
+          </div>
+
+          <div style="display: flex; gap: 10px; padding-top: 8px;">
+            <button type="button" class="btn btn-secondary" id="cancel-modal" style="flex: 1;">Cancel</button>
+            <button type="submit" class="btn btn-primary" id="create-btn" style="flex: 2;">
+              Create Project →
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>
